@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>SlotLifter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <style>
+    body {
+      background-color: #ffffff;
+    }
+    hr {
+      background-color: #f1f1f1;
+    }
+    .table th {
+      padding: 0.2em 0.2em 0 0.2em;
+      width: 50%;
+    }
+    .table td {
+      padding: 0.25em;
+      width: 50%;
+    }
+    .content-block {
+      padding: 0 6px;
+    }
+    .title {
+      font-size: 32px;
+      padding-top: 32px;
+    }
+    .publisher {
+      margin-bottom: 1rem;
+    }
+    .sub-title {
+      font-size: 26px;
+      padding-bottom: 16px;
+    }
+    .subsub-title {
+      font-size: 20px;
+      padding-bottom: 8px;
+    }
+    .author {
+      font-size: 16px;
+    }
+    .task {
+      padding-bottom: 12px;
+    }
+    .gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Creates 4 equal columns */
+    gap: 10px; /* This adds space between the images */
+    }
+    .gallery img {
+      width: 100%; /* Each image will fill its respective cell */
+      height: auto; /* Keeps the image aspect ratio intact */
+    }
+    .gallery1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
+    gap: 30px; /* This adds space between the images */
+    }
+    .gallery1 img {
+      width: 800; /* Each image will fill its respective cell */
+      height: auto; /* Keeps the image aspect ratio intact */
+    }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js",
+        "three": "https://unpkg.com/three@0.127.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.127.0/examples/jsm/"
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div class="columns">
+      <div id="main-content" class="column is-6 is-offset-3" :class="[content, offset]">
+
+        <h1 class="title has-text-centered" style="margin-bottom: 0.5em">
+          SlotLifter: Slot-guided Feature Lifting for Learning Object-centric Radiance Fields
+        </h1>
+
+        <!-- <p class="publisher has-text-centered">Conference</p> -->
+
+        <div class="has-text-centered" style="padding: 0 2em;">
+
+          <!-- <p class="author">
+            Anonymous Authors
+          </p> -->
+
+          <p class="author">
+            <a href="https://yuliu-ly.github.io">Yu Liu✶</a><sup>1,2</sup>,</span>
+            <a href="https://buzz-beater.github.io/">Baoxiong Jia*</a><sup>2</sup>,</span>
+            <a href="https://yixchen.github.io/">Yixin Chen</a><sup>2</sup>,</span>
+            <a href="https://siyuanhuang.com/">Siyuan Huang</a><sup>2</sup> &nbsp;&nbsp;&nbsp;
+          </p>
+
+          <p style="font-size: 0.9em; padding: 0.5em 0;">✶ indicates equal contribution</p>
+
+          <p style="font-size: 1em;">
+            <sup>1</sup>State Key Laboratory of General Artificial Intelligence, BIGAI<br>
+            <sup>2</sup>Tsinghua University<br>
+          </p>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://slotlifter.github.io/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- ArXiv Link. -->
+              <span class="link-block">
+                <a href="https://slotlifter.github.io/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://slotlifter.github.io/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (comming soon)</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="has-text-centered content-block">
+          <h2 class="sub-title">Abstract</h2>
+            <p style="text-align:justify; margin-bottom: 2em; font-size: 1.0 em;">
+              The ability to distill object-centric abstractions from intricate visual scenes underpins human-level generalization. Despite the significant progress in object-centric learning methods, learning object-centric representations in the 3D physical world remains a crucial challenge. In this work, we propose SlotLifter, a novel object-centric radiance model that aims to address the challenges of scene reconstruction and decomposition via slot-guided feature lifting. Such a design unites object-centric learning representations and image-based rendering methods, offering state-of-the-art performance in scene decom-position and novel-view synthesis on four challenging synthetic and four complex real-world datasets, outperforming existing 3D object-centric learning methods by a large margin. Through extensive ablative studies, we showcase the efficacy of each design in SlotLifter, shedding light on key insights for potential future directions.
+            </p>
+        </div>
+
+        <hr>
+
+        <div class="has-text-centered content-block">
+          <h2 class="sub-title">Overview of SlotLifter</h2>
+        </div>
+        <div class="has-text-centered" style="padding: 0 1em;">
+          <img src="./static/images/overview.png"/>
+          <p style="text-align: justify; font-size: 1.0 em;">
+            SlotLifter extracts slots from input source views during the slot encoding process. It then lifts 2D feature maps of input views to initialize 3D point features. These point features are inputted into an allocation Transformer as queries to attend slots for point-slot joint decoding. Then we obtain the point-slot mapping \(W_p\), density \(\sigma\), and the slot-aggregated point feature \(F_s\) via an attention layer. Finally, SlotLifter renders the novel-view image and segmentation masks with point colors and point-slot mappings through volume rendering.
+          </p>
+        </div>
+
+        <hr>
+
+        <div class="has-text-centered content-block">
+          <h2 class="sub-title">Distinctions with Previous Methods</h2>
+          <img src="./static/images/distinction.png" width="100%"/>
+          <p style="text-align: justify; font-size: 1.0 em;">
+            Previous methods render novel views by decoding slots with positional embedding of rays or points, resulting in fuzzy images and imprecise segmentation masks due to the information loss during slot encoding. In contrast, we propose to lift 2D multi-view image features to initialize 3D point features, rendering high-quality novel-view images and masks through point-slot joint decoding.
+            </p>
+        </div>
+          
+        <hr>
+
+        <div class="has-text-centered content-block">
+          <h2 class="sub-title">Introduction of SlotLifter</h2>
+        </div>
+        <div class="has-text-centered" style="padding: 0 1em;">
+          <video controls="controls" loop="loop" autoplay="autoplay" width="100%">
+            <source src="https://youtu.be/gOOkMnifhvA">
+          </video>
+
+        <hr>
+
+        <div id="results" class="content-block">
+            <h2 class="sub-title has-text-centered">Results on ScanNet</h2>
+            <p style="text-align: justify; font-size: 1.0 em;">
+              We show the results of SlotLifter on ScanNet datasets. 
+              Click the button to select a scene for result visualization.
+            </p>
+              <hr>
+              <div class="task">
+              <div class="columns is-centered" style="position: relative;">
+                <div class="control" style="position: absolute; left: -20%; top: 0%">
+                  <label class="radio">
+                    <input value="0000_01" type="radio" name="dataset"> Scene0000_01
+                  </label>
+                  <br>
+                  <label class="radio">
+                    <input value="0158_00" type="radio" name="dataset"> Scene0158_00
+                  </label>
+                  <br>
+                  <label class="radio">
+                    <input value="0553_00" type="radio" name="dataset"> Scene0553_00
+                  </label>
+                  <br>
+                  <label class="radio">
+                    <input value="0653_00" type="radio" name="dataset"> Scene0653_00
+                  </label>
+                  <br>
+                
+                </div>
+                <div id="pose_loading" style="position: absolute; left: 50%; top: 45%;"></div>
+                <div>
+                <figure>
+                  <img src="./static/images/scannet/recon_gt_vis_0158_00.gif" id="scannet_recon_gt" width="100%">
+                  <figcaption style="text-align: center;">GT Reconstruction </figcaption>
+                </figure>
+                <figure>
+                  <img src="./static/images/scannet/mask_gt_vis_0158_00.gif" id="scannet_mask_gt" width="100%">
+                <figcaption style="text-align: center;">GT Segmentation </figcaption>
+                </figure>
+                </div>
+                <div>
+                <figure>
+                  <img src="./static/images/scannet/recon_vis_0158_00.gif" id="scannet_recon" width="100%">
+                  <figcaption style="text-align: center;">SlotLifter Reconstruction </figcaption>
+                </figure>
+                <figure>
+                  <img src="./static/images/scannet/mask_vis_0158_00.gif" id="scannet_mask" width="100%">
+                <figcaption style="text-align: center;">SlotLifter Segmentation </figcaption>
+                </figure>
+              </div>
+              </div>
+            </div>
+          </div>
+
+        <hr>
+
+        <div id="results" class="content-block">
+            <h2 class="sub-title has-text-centered">Results on Kitchen-Matte & Kitchen-Shiny </h2>
+            <p style="text-align: justify; font-size: 1.0 em;">
+              We show the results of SlotLifter on Kitchen-Matte and Kitchen-Shiny datasets. The first column shows the input image, the second column shows the reconstructed 3D scenes by SlotLifter, and the third column shows the segmentation masks by SlotLifter.
+              Click the button to select a scene for result visualization.
+            </p>
+            <hr>
+              <div class="task">
+              <div class="columns is-centered" style="position: relative;">
+                <div class="control" style="position: absolute; left: -20%;">
+                  <label class="radio">
+                    <input value="Kitchen-Matte" type="radio" name="dataset"> Kitchen-Matte
+                  </label>
+                  <br>
+                  <label class="radio">
+                    <input value="Kitchen-Shiny" type="radio" name="dataset"> Kitchen-Shiny
+                  </label>
+                  <br>
+                </div>
+                <div id="pose_loading" style="position: absolute; left: 50%; top: 45%;"></div>
+                <div class="gallery1">
+                  <img src="./static/images/Kitchen-Matte/1_rgb_gt.png" id="kit_gt1">
+                  <img src="./static/images/Kitchen-Matte/1_recon.gif" id="kit_mask1" style="margin-right: 30px;">
+                  <img src="./static/images/Kitchen-Matte/1_mask.gif" id="kit_recon1" style="margin-right: 30px;">
+
+                  <img src="./static/images/Kitchen-Matte/2_rgb_gt.png" id="kit_gt2">
+                  <img src="./static/images/Kitchen-Matte/2_recon.gif" id="kit_mask2" style="margin-right: 30px;">
+                  <img src="./static/images/Kitchen-Matte/2_mask.gif" id="kit_recon2" style="margin-right: 30px;">
+
+                  <img src="./static/images/Kitchen-Matte/3_rgb_gt.png" id="kit_gt3">
+                  <img src="./static/images/Kitchen-Matte/3_recon.gif" id="kit_mask3" style="margin-right: 30px;">
+                  <img src="./static/images/Kitchen-Matte/3_mask.gif" id="kit_recon3" style="margin-right: 30px;">
+
+                  <img src="./static/images/Kitchen-Matte/4_rgb_gt.png" id="kit_gt4">
+                  <img src="./static/images/Kitchen-Matte/4_recon.gif" id="kit_mask4" style="margin-right: 30px;">
+                  <img src="./static/images/Kitchen-Matte/4_mask.gif" id="kit_recon4" style="margin-right: 30px;">
+
+                  <img src="./static/images/Kitchen-Matte/5_rgb_gt.png" id="kit_gt5">
+                  <img src="./static/images/Kitchen-Matte/5_recon.gif" id="kit_mask5" style="margin-right: 30px;">
+                  <img src="./static/images/Kitchen-Matte/5_mask.gif" id="kit_recon5" style="margin-right: 30px;">
+
+                  <img src="./static/images/Kitchen-Matte/6_rgb_gt.png" id="kit_gt6">
+                  <img src="./static/images/Kitchen-Matte/6_recon.gif" id="kit_mask6" style="margin-right: 30px;">
+                  <img src="./static/images/Kitchen-Matte/6_mask.gif" id="kit_recon6" style="margin-right: 30px;">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <hr>
+
+        <div id="results" class="content-block">
+            <h2 class="sub-title has-text-centered">Results on Synthetic 3D scenes</h2>
+              <p style="text-align: justify; font-size: 1.0 em;">
+                We show the results of SlotLifter on synthetic datasets. 
+                Click the button to select a scene for result visualization.
+              </p>
+              <hr>
+              <div class="task">
+              <div class="columns is-centered" style="position: relative;">
+                <div class="control" style="position: absolute; left: -20%;">
+                  <label class="radio">
+                    <input value="clevr_567" type="radio" name="dataset"> CLEVR-567
+                  </label>
+                  <br>
+                  <label class="radio">
+                    <input value="room_chair" type="radio" name="dataset"> Room-Chair
+                  </label>
+                  <br>
+                  <label class="radio">
+                    <input value="room_diverse" type="radio" name="dataset"> Room-Diverse
+                  </label>
+                  <br>
+                </div>
+                <div id="pose_loading" style="position: absolute; left: 50%; top: 45%;"></div>
+                <div class="gallery">
+                  <img src="./static/images/synthetic/recon_vis_clevr_567_131.gif" id="syn_recon1">
+                  <img src="./static/images/synthetic/mask_vis_clevr_567_131.gif" id="syn_mask1" style="margin-right: 30px;">
+                  <img src="./static/images/synthetic/recon_vis_clevr_567_132.gif" id="syn_recon2">
+                  <img src="./static/images/synthetic/mask_vis_clevr_567_132.gif" id="syn_mask2" style="margin-right: 30px;">
+                  <img src="./static/images/synthetic/recon_vis_clevr_567_133.gif" id="syn_recon3">
+                  <img src="./static/images/synthetic/mask_vis_clevr_567_133.gif" id="syn_mask3" style="margin-right: 30px;">
+                  <img src="./static/images/synthetic/recon_vis_clevr_567_134.gif" id="syn_recon4">
+                  <img src="./static/images/synthetic/mask_vis_clevr_567_134.gif" id="syn_mask4" style="margin-right: 30px;">
+                  <img src="./static/images/synthetic/recon_vis_clevr_567_135.gif" id="syn_recon5">
+                  <img src="./static/images/synthetic/mask_vis_clevr_567_135.gif" id="syn_mask5" style="margin-right: 30px;">
+                  <img src="./static/images/synthetic/recon_vis_clevr_567_136.gif" id="syn_recon6">
+                  <img src="./static/images/synthetic/mask_vis_clevr_567_136.gif" id="syn_mask6" style="margin-right: 30px;">
+                  <img src="./static/images/synthetic/recon_vis_clevr_567_137.gif" id="syn_recon7">
+                  <img src="./static/images/synthetic/mask_vis_clevr_567_137.gif" id="syn_mask7" style="margin-right: 30px;">
+                  <img src="./static/images/synthetic/recon_vis_clevr_567_138.gif" id="syn_recon8">
+                  <img src="./static/images/synthetic/mask_vis_clevr_567_138.gif" id="syn_mask8" style="margin-right: 30px;">
+                  <img src="./static/images/synthetic/recon_vis_clevr_567_139.gif" id="syn_recon9">
+                  <img src="./static/images/synthetic/mask_vis_clevr_567_139.gif" id="syn_mask9" style="margin-right: 30px;">
+                  <img src="./static/images/synthetic/recon_vis_clevr_567_140.gif" id="syn_recon10">
+                  <img src="./static/images/synthetic/mask_vis_clevr_567_140.gif" id="syn_mask10" style="margin-right: 30px;">
+                  <img src="./static/images/synthetic/recon_vis_clevr_567_141.gif" id="syn_recon11">
+                  <img src="./static/images/synthetic/mask_vis_clevr_567_141.gif" id="syn_mask11" style="margin-right: 30px;">
+                  <img src="./static/images/synthetic/recon_vis_clevr_567_142.gif" id="syn_recon12">
+                  <img src="./static/images/synthetic/mask_vis_clevr_567_142.gif" id="syn_mask12" style="margin-right: 30px;">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!-- <div class="has-text-centered content-block">
+          <h2 class="sub-title">Bibtex</h2>
+          <p style="text-align:justify">If you find our project useful, please consider citing us:</p>
+          <div style="padding-top: 1rem; text-align: left;"> -->
+<!-- <pre><code>
+  @inproceedings{jia2023improving,
+    title={Improving Object-centric Learning with Query Optimization},
+    author={Jia, Baoxiong and Liu, Yu and Huang, Siyuan},
+    booktitle={The Eleventh International Conference on Learning Representations},
+    year={2023}
+  }
+</code></pre> -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+    <footer class="footer" style="padding: 0 0 1.5rem 0">
+      <div class="columns">
+        <div class="column" :class="[content, offset]">
+          <hr>
+          <p class="has-text-centered" style="font-size: 0.9em;">This website uses the template from <a href="https://scenediffuser.github.io">SceneDiffuser</a>. Please use <b>chrome</b> for best experience. </p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+<script type="module">
+  import { createApp } from 'vue'
+
+  function get_layout_config() {
+    let w = document.documentElement.clientWidth;
+    // console.log(w)
+    let c
+    let o
+    if (w >= 1200) {
+      c = 'is-6'
+      o = 'is-offset-3'
+    } else if (w >= 900) {
+      c = 'is-8'
+      o = 'is-offset-2'
+    } else {
+      c = 'is-10'
+      o = 'is-offset-1'
+    }
+    return {'content': c, 'offset': o}
+  }
+  
+  let content = document.getElementById('main-content')
+  content.classList.remove('is-6')
+  content.classList.remove('is-offset-3')
+
+  let app = createApp({
+    data() {
+      return get_layout_config()
+    }
+  }).mount('#app')
+
+  function displayWindowSize() {
+    let layout = get_layout_config()
+    app.$data.content = layout['content']
+    app.$data.offset = layout['offset']
+  }
+  
+  window.addEventListener("resize", displayWindowSize)
+  displayWindowSize()
+
+  import * as THREE from 'three'
+  import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+  import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
+
+  const dict = {
+    '0000_01': 'scannet',
+    '0079_00': 'scannet',
+    '0158_00': 'scannet',
+    '0316_00': 'scannet',
+    '0521_00': 'scannet',
+    '0553_00': 'scannet',
+    '0616_00': 'scannet',
+    '0653_00': 'scannet',
+    'clevr_567': 'syn',
+    'room_chair': 'syn',
+    'room_diverse': 'syn',
+    'Kitchen-Shiny': 'kit',
+    'Kitchen-Matte': 'kit',
+  }
+  
+  // update img src when choose other dataset
+  const radioButtons = document.querySelectorAll('input[name="dataset"]')
+  for (const radioButton of radioButtons) {
+    radioButton.addEventListener('change', show)
+    function show(){
+      if (dict[radioButton.value] == 'scannet'){ 
+        document.getElementById('scannet_recon').src = './static/images/scannet/recon_vis_'+ radioButton.value + '.gif'
+        document.getElementById('scannet_mask').src = './static/images/scannet/mask_vis_'+ radioButton.value + '.gif'
+        document.getElementById('scannet_recon_gt').src = './static/images/scannet/recon_gt_vis_'+ radioButton.value + '.gif'
+        document.getElementById('scannet_mask_gt').src = './static/images/scannet/mask_gt_vis_'+ radioButton.value + '.gif'
+      }
+      else if (dict[radioButton.value] == 'kit'){
+        for (let i = 1; i <= 6; i++) {
+          document.getElementById('kit_gt' + i).src = './static/images/' + radioButton.value + '/' + i + '_rgb_gt.png';
+          document.getElementById('kit_recon' + i).src = './static/images/' + radioButton.value + '/' + i + '_recon.gif';
+          document.getElementById('kit_mask' + i).src = './static/images/' + radioButton.value + '/' + i + '_mask.gif';
+        }
+      }
+      else{
+        for (let i = 1; i <= 12; i++) {
+          let imageNumber = 130 + i;
+          let reconId = 'syn_recon' + i;
+          let maskId = 'syn_mask' + i;
+          document.getElementById(reconId).src = './static/images/synthetic/recon_vis_' + radioButton.value + '_' + imageNumber + '.gif';
+          document.getElementById(maskId).src = './static/images/synthetic/mask_vis_' + radioButton.value + '_' + imageNumber + '.gif';
+        }
+      }  
+    }
+  }
+  radioButtons[0].click()
+  
+
+
+
+</script>
+
+</html>
