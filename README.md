@@ -1,6 +1,6 @@
 # SlotLifter
 
-This is the repository that contains source code for [SlotLifter website](https://slotlifter.github.io) adapted from the [Nerfies website](https://nerfies.github.io).
+This is the repository that contains source code for [SlotLifter website](https://slotlifter.github.io) adapted from the [Nerfies website](https://nerfies.github.io) and [SceneDiffuser](https://scenediffuser.github.io).
 
 
 # Website License
